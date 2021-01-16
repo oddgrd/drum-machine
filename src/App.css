@@ -1,38 +1,175 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+body {
+  background-color: #1a1a1d;
+  color: white;
+  font-family: "Poppins", sans-serif;
   min-height: 100vh;
+}
+
+.App {
+  min-height: 30vh;
+  min-width: 650px;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 6px;
+  background-color: #950740;
+}
+
+.drumpad-container {
+  width: 60%;
+  padding: 7px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.drum-pad {
+  margin: 0.5rem;
+  background: #1a1a1d;
+  color: #950740;
+  border-radius: 6px;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.drum-pad:hover {
+  background: #4e4e50;
+  color: #c3073f;
+}
+
+.settings-container {
+  min-width: 40%;
+
+  display: grid;
+  grid-template-areas:
+    "settings-text-area"
+    "slider-area"
+    "switches-area";
+  grid-template-columns: auto;
+}
+
+.settings-text {
+  grid-area: settings-text-area;
+  background: grey;
+  height: 50px;
+  width: 90%;
+  margin: auto;
+  margin-top: 16px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+}
+/* Slider */
+.slider {
+  grid-area: slider-area;
+  -webkit-appearance: none;
+  width: 80%;
+  display: flex;
+  justify-self: center;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
 }
 
-.App-link {
-  color: #61dafb;
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+}
+/*Switches*/
+input[type="checkbox"] {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.switches {
+  cursor: pointer;
+
+  width: 50px;
+  height: 25px;
+  background: #1a1a1d;
+  display: block;
+  border-radius: 100px;
+  position: relative;
+}
+
+.switches:after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  width: 21px;
+  height: 21px;
+  background: white;
+  border-radius: 90px;
+  transition: 0.3s;
+}
+
+#power-switch:checked + .switches {
+  background: #4e4e50;
+}
+
+#power-switch:checked + .switches:after {
+  left: calc(100% - 5px);
+  transform: translateX(-100%);
+}
+#bank-switch:checked + .switches {
+  background: #4e4e50;
+}
+
+#bank-switch:checked + .switches:after {
+  left: calc(100% - 5px);
+  transform: translateX(-100%);
+}
+
+.switches:active:after {
+  width: 30px;
+}
+.switches-div {
+  grid-area: switches-area;
+  display: flex;
+  width: 100%;
+  margin-bottom: -30px;
+  justify-content: center;
+  align-items: center;
+  margin-left: -14px;
+}
+.switch-description {
+  margin-right: -7px;
+  padding-left: 5px;
+}
+
+@media (max-width: 700px) {
+  .App {
+    min-width: 400px;
+    min-height: 50vh;
   }
-  to {
-    transform: rotate(360deg);
+  .settings-container {
+    min-width: 30%;
   }
 }
