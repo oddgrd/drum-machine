@@ -1,6 +1,14 @@
-import React from "react";
+import { React } from "react";
 
-function Settings({ volume, setVolume, power, togglePower, bank, toggleBank }) {
+function Settings({
+  volume,
+  setVolume,
+  power,
+  togglePower,
+  bank,
+  toggleBank,
+  curKey,
+}) {
   const handleVolumeChange = (e) => {
     if (power) {
       setVolume(e.target.value);
@@ -12,14 +20,18 @@ function Settings({ volume, setVolume, power, togglePower, bank, toggleBank }) {
   const handleBankToggle = () => {
     if (power) {
       toggleBank(!bank);
+      console.log("bank");
     }
   };
+  //useEffect(() => {}, [curKey]);
   //disabled bank button with power disabled
   const bankId = power ? "bank-switch" : "disabled";
   return (
     <div className="settings-container">
-      <div className="settings-text">{volume}</div>
-      <label for="volume-slider" />
+      <div className="settings-text" id="display">
+        {power ? curKey : ""}
+      </div>
+      <label htmlFor="volume-slider" />
       <input
         type="range"
         min="1"
@@ -32,10 +44,10 @@ function Settings({ volume, setVolume, power, togglePower, bank, toggleBank }) {
       <div className="switches-div">
         <p className="switch-description">Power</p>
         <input type="checkbox" id="power-switch" onClick={handlePowerToggle} />
-        <label for="power-switch" className="switches"></label>
+        <label htmlFor="power-switch" className="switches"></label>
         <p className="switch-description">Bank</p>
         <input type="checkbox" id={bankId} onClick={handleBankToggle} />
-        <label for="bank-switch" className="switches"></label>
+        <label htmlFor="bank-switch" className="switches"></label>
       </div>
     </div>
   );

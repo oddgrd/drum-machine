@@ -39,10 +39,22 @@ body {
   transition: all 0.3s ease;
   cursor: pointer;
 }
+.drum-pad-disabled {
+  margin: 0.5rem;
+  background: #1a1a1d;
+  color: #950740;
+  border-radius: 6px;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
 
 .drum-pad:hover {
   background: #4e4e50;
-  color: #c3073f;
+  color: white;
 }
 
 .settings-container {
