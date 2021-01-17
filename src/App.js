@@ -119,6 +119,7 @@ function App() {
         setKeys={setKeys}
         volume={volume}
         setCurKey={setCurKey}
+        power={power}
       />
       <Settings
         volume={volume}

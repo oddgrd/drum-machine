@@ -1,13 +1,18 @@
 import { React } from "react";
 
-function DrumPads({ keys, volume, setCurKey }) {
+function DrumPads({ keys, volume, setCurKey, power }) {
+  const handleClick = (idx) => {
+    if (power) {
+      setCurKey(keys[idx].description);
+    }
+  };
   return (
     <div className="drumpad-container">
       {keys.map((key, index) => (
         <div
           key={index}
           className="drum-pad"
-          onClick={() => setCurKey(keys[index].description)}
+          onClick={() => handleClick(index)}
           id={keys[index].description}
         >
           {keys[index].key}

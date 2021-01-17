@@ -20,7 +20,6 @@ function Settings({
   const handleBankToggle = () => {
     if (power) {
       toggleBank(!bank);
-      console.log("bank");
     }
   };
   //useEffect(() => {}, [curKey]);
