@@ -8,10 +8,13 @@ function Settings({
   bank,
   toggleBank,
   curKey,
+  sliderVal,
+  setSliderVal,
 }) {
   const handleVolumeChange = (e) => {
     if (power) {
-      setVolume(e.target.value);
+      setSliderVal(e.target.value);
+      setVolume(Math.round(e.target.value * 100));
     }
   };
   const handlePowerToggle = () => {
@@ -33,9 +36,10 @@ function Settings({
       <label htmlFor="volume-slider" />
       <input
         type="range"
-        min="1"
-        max="100"
-        value={volume}
+        min="0"
+        max="1"
+        step="0.01"
+        value={sliderVal}
         className="slider"
         id="volume-slider"
         onChange={handleVolumeChange}
