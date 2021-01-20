@@ -1,13 +1,12 @@
 import { React } from "react";
 
 function Settings({
-  volume,
   setVolume,
   power,
   togglePower,
   bank,
   toggleBank,
-  curKey,
+  displayKey,
   sliderVal,
   setSliderVal,
 }) {
@@ -18,20 +17,26 @@ function Settings({
     }
   };
   const handlePowerToggle = () => {
-    togglePower(!power);
+    if (power) {
+      togglePower(!power);
+      toggleBank(false);
+      document.getElementById("bank-switch").checked = false;
+      document.getElementById("bank-switch").disabled = true;
+    } else {
+      togglePower(!power);
+      document.getElementById("bank-switch").disabled = false;
+    }
   };
   const handleBankToggle = () => {
     if (power) {
       toggleBank(!bank);
     }
   };
-  //useEffect(() => {}, [curKey]);
-  //disabled bank button with power disabled
-  const bankId = power ? "bank-switch" : "disabled";
+
   return (
     <div className="settings-container">
       <div className="settings-text" id="display">
-        {power ? curKey : ""}
+        {power ? displayKey : ""}
       </div>
       <label htmlFor="volume-slider" />
       <input
@@ -49,7 +54,7 @@ function Settings({
         <input type="checkbox" id="power-switch" onClick={handlePowerToggle} />
         <label htmlFor="power-switch" className="switches"></label>
         <p className="switch-description">Bank</p>
-        <input type="checkbox" id={bankId} onClick={handleBankToggle} />
+        <input type="checkbox" id="bank-switch" onClick={handleBankToggle} />
         <label htmlFor="bank-switch" className="switches"></label>
       </div>
     </div>

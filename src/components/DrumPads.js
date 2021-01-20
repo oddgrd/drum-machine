@@ -1,14 +1,14 @@
-import { React, useState, useEffect } from "react";
+import { React } from "react";
 import useKeyPress from "../custom-hooks/useKeyPress";
-function DrumPads({ keys, sliderVal, setCurKey, power, curKey }) {
+function DrumPads({ keys, sliderVal, setDisplayKey, power }) {
   const playSound = (obj) => {
-    setCurKey(obj.description);
+    setDisplayKey(obj.description);
     const sound = document.getElementById(obj.triggerKey);
     sound.currentTime = 0;
     sound.volume = sliderVal;
     sound.play();
   };
-  const handleClick = (idx, obj) => {
+  const handleClick = (obj) => {
     if (power) {
       playSound(obj);
     }
@@ -34,9 +34,8 @@ function DrumPads({ keys, sliderVal, setCurKey, power, curKey }) {
       {keys.map((key, index) => (
         <div
           key={index}
-          keycode={key.keycode}
           className="drum-pad"
-          onClick={() => handleClick(index, key)}
+          onClick={() => handleClick(key)}
           id={key.description}
         >
           {key.triggerKey}
