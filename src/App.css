@@ -51,7 +51,18 @@ body {
   transition: all 0.3s ease;
   cursor: pointer;
 }
-
+.drum-pad-activated {
+  margin: 0.5rem;
+  background: #4e4e50;
+  color: white;
+  border-radius: 6px;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
 .drum-pad:hover {
   background: #4e4e50;
   color: white;

@@ -4,6 +4,7 @@ function DrumPads({ keys, sliderVal, setDisplayKey, power }) {
   const playSound = (obj) => {
     setDisplayKey(obj.description);
     const sound = document.getElementById(obj.triggerKey);
+
     sound.currentTime = 0;
     sound.volume = sliderVal;
     sound.play();
@@ -27,8 +28,14 @@ function DrumPads({ keys, sliderVal, setDisplayKey, power }) {
   const handleKeyPress = (key, idx) => {
     if (keyPresses[idx] && power) {
       playSound(key);
+      document.getElementById(key.description).className = "drum-pad-activated";
+      setTimeout(
+        () => (document.getElementById(key.description).className = "drum-pad"),
+        300
+      );
     }
   };
+
   return (
     <div className="drumpad-container">
       {keys.map((key, index) => (
