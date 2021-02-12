@@ -108,7 +108,8 @@ function App() {
 
   useEffect(() => {
     bank ? setKeys(keys2) : setKeys(keys1);
-    setDisplayKey("");
+    const bankName = bank ? "Set 2" : "Set 1";
+    setDisplayKey(bankName);
   }, [bank]);
   useEffect(() => {
     setDisplayKey(`Volume: ${volume}`);
@@ -120,6 +121,7 @@ function App() {
         keys={keys}
         setKeys={setKeys}
         sliderVal={sliderVal}
+        bank={bank}
         setDisplayKey={setDisplayKey}
         power={power}
       />
@@ -133,6 +135,7 @@ function App() {
         displayKey={displayKey}
         sliderVal={sliderVal}
         setSliderVal={setSliderVal}
+        setDisplayKey={setDisplayKey}
       />
     </div>
   );

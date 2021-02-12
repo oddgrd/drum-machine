@@ -1,58 +1,60 @@
-import { React } from "react";
-import useKeyPress from "../custom-hooks/useKeyPress";
-function DrumPads({ keys, sliderVal, setDisplayKey, power }) {
+import { React, useEffect, useRef } from "react";
+
+function DrumPads({ keys, sliderVal, setDisplayKey, power, bank }) {
   const playSound = (obj) => {
     setDisplayKey(obj.description);
     const sound = document.getElementById(obj.triggerKey);
-
     sound.currentTime = 0;
     sound.volume = sliderVal;
-    sound.play();
+    sound.play().catch((e) => {});
   };
-  const handleClick = (obj) => {
+  const handleClick = (e, obj) => {
     if (power) {
       playSound(obj);
     }
   };
-  const keyPresses = [
-    useKeyPress("q"),
-    useKeyPress("w"),
-    useKeyPress("e"),
-    useKeyPress("a"),
-    useKeyPress("s"),
-    useKeyPress("d"),
-    useKeyPress("z"),
-    useKeyPress("x"),
-    useKeyPress("c"),
-  ];
-  const handleKeyPress = (key, idx) => {
-    if (keyPresses[idx] && power) {
-      playSound(key);
-      document.getElementById(key.description).className = "drum-pad-activated";
+
+  const keysArr = ["Q", "W", "E", "A", "S", "D", "Z", "X", "C"];
+  const handleKeyPress = (e) => {
+    const k = e.key.toUpperCase();
+    const idx = keysArr.indexOf(k);
+
+    console.log(k);
+    if (idx !== -1 && power) {
+      playSound(keys[idx]);
+      document
+        .getElementById(keys[idx].description)
+        .classList.add("drum-pad-active");
       setTimeout(
-        () => (document.getElementById(key.description).className = "drum-pad"),
-        300
+        () =>
+          document
+            .getElementById(keys[idx].description)
+            .classList.remove("drum-pad-active"),
+        200
       );
     }
   };
+  const padRef = useRef(null);
+  useEffect(() => {
+    setTimeout(() => padRef.current.focus(), 500);
+  });
 
   return (
     <div className="drumpad-container">
       {keys.map((key, index) => (
-        <div
+        <button
+          ref={padRef}
+          disabled={!power}
           key={index}
-          className="drum-pad"
-          onClick={() => handleClick(key)}
+          className={power ? "drum-pad" : "drum-pad-disabled"}
+          onKeyDown={(e) => handleKeyPress(e)}
+          onClick={(e) => handleClick(e, key)}
           id={key.description}
+          onBlur={() => setTimeout(() => padRef.current.focus(), 500)}
         >
           {key.triggerKey}
-          <audio
-            id={key.triggerKey}
-            className="clip"
-            onKeyDown={handleKeyPress(key, index)}
-            src={key.url}
-          ></audio>
-        </div>
+          <audio id={key.triggerKey} className="clip" src={key.url}></audio>
+        </button>
       ))}
     </div>
   );

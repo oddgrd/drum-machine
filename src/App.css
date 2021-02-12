@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: #1a1a1d;
+  background-color: #0c2233;
   color: white;
   font-family: "Poppins", sans-serif;
   min-height: 100vh;
@@ -17,7 +17,7 @@ body {
   display: flex;
   justify-content: space-between;
   border-radius: 6px;
-  background-color: #950740;
+  background-color: #c28e26;
 }
 
 .drumpad-container {
@@ -29,48 +29,40 @@ body {
 
 .drum-pad {
   margin: 0.5rem;
-  background: #1a1a1d;
-  color: #950740;
+  background: #065471;
+  color: #ffc045;
+  border: none;
   border-radius: 6px;
   font-size: 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   cursor: pointer;
+  outline: none;
 }
+.drum-pad:active,
+.drum-pad-active,
+.drum-pad:hover {
+  background: #0a91ab;
+  color: white;
+}
+
 .drum-pad-disabled {
   margin: 0.5rem;
-  background: #1a1a1d;
-  color: #950740;
+  background: #0c2233;
+
+  color: #c28e26;
+  border: none;
   border-radius: 6px;
   font-size: 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-.drum-pad-activated {
-  margin: 0.5rem;
-  background: #4e4e50;
-  color: white;
-  border-radius: 6px;
-  font-size: 1.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-.drum-pad:hover {
-  background: #4e4e50;
-  color: white;
 }
 
 .settings-container {
   min-width: 40%;
-
   display: grid;
   grid-template-areas:
     "settings-text-area"
@@ -81,8 +73,9 @@ body {
 
 .settings-text {
   grid-area: settings-text-area;
-  background: grey;
-  height: 50px;
+  background: #065471;
+  border-radius: 3px;
+  height: 60px;
   width: 90%;
   margin: auto;
   margin-top: 16px;
@@ -94,14 +87,12 @@ body {
 .slider {
   grid-area: slider-area;
   -webkit-appearance: none;
-  width: 80%;
+  width: 60%;
   display: flex;
   justify-self: center;
   height: 15px;
   border-radius: 5px;
-  background: #d3d3d3;
   outline: none;
-
   -webkit-transition: 0.2s;
   transition: opacity 0.2s;
 }
@@ -123,7 +114,7 @@ body {
   background: white;
   cursor: pointer;
 }
-/*Switches*/
+
 input[type="checkbox"] {
   height: 0;
   width: 0;
@@ -132,7 +123,6 @@ input[type="checkbox"] {
 
 .switches {
   cursor: pointer;
-
   width: 50px;
   height: 25px;
   background: #1a1a1d;

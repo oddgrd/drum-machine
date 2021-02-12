@@ -35,7 +35,7 @@ function Settings({
 
   return (
     <div className="settings-container">
-      <div className="settings-text" id="display">
+      <div className="settings-text unselectable" id="display">
         {power ? displayKey : ""}
       </div>
       <label htmlFor="volume-slider" />
@@ -46,15 +46,24 @@ function Settings({
         step="0.01"
         value={sliderVal}
         className="slider"
+        style={{ background: power ? "#d3d3d3" : "#4e4e50" }}
         id="volume-slider"
         onChange={handleVolumeChange}
       />
       <div className="switches-div">
         <p className="switch-description">Power</p>
-        <input type="checkbox" id="power-switch" onClick={handlePowerToggle} />
+        <input
+          type="checkbox"
+          id="power-switch"
+          onClick={() => handlePowerToggle()}
+        />
         <label htmlFor="power-switch" className="switches"></label>
         <p className="switch-description">Bank</p>
-        <input type="checkbox" id="bank-switch" onClick={handleBankToggle} />
+        <input
+          type="checkbox"
+          id="bank-switch"
+          onClick={() => handleBankToggle()}
+        />
         <label htmlFor="bank-switch" className="switches"></label>
       </div>
     </div>
