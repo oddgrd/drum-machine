@@ -35,7 +35,11 @@ function Settings({
 
   return (
     <div className="settings-container">
-      <div className="settings-text unselectable" id="display">
+      <div
+        className="settings-text"
+        id="display"
+        style={{ background: power ? "#065471" : "#0c2233" }}
+      >
         {power ? displayKey : ""}
       </div>
       <label htmlFor="volume-slider" />
@@ -46,7 +50,7 @@ function Settings({
         step="0.01"
         value={sliderVal}
         className="slider"
-        style={{ background: power ? "#d3d3d3" : "#4e4e50" }}
+        style={{ background: power ? "#065471" : "#0c2233" }}
         id="volume-slider"
         onChange={handleVolumeChange}
       />

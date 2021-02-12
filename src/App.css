@@ -69,11 +69,12 @@ body {
     "slider-area"
     "switches-area";
   grid-template-columns: auto;
+  transition: all 0.2s ease;
 }
 
 .settings-text {
   grid-area: settings-text-area;
-  background: #065471;
+  color: #ffc045;
   border-radius: 3px;
   height: 60px;
   width: 90%;
@@ -83,7 +84,7 @@ body {
   align-items: center;
   justify-content: center;
 }
-/* Slider */
+
 .slider {
   grid-area: slider-area;
   -webkit-appearance: none;
@@ -94,7 +95,7 @@ body {
   border-radius: 5px;
   outline: none;
   -webkit-transition: 0.2s;
-  transition: opacity 0.2s;
+  transition: all 0.2s ease;
 }
 
 .slider::-webkit-slider-thumb {
@@ -111,6 +112,7 @@ body {
   width: 25px;
   height: 25px;
   border-radius: 50%;
+  border: none;
   background: white;
   cursor: pointer;
 }
